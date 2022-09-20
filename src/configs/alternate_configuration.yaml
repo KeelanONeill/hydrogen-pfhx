@@ -1,0 +1,32 @@
+# Default configuration file for hydrogen PFHX setup
+
+reactant:
+    mass_flow_rate: 100.0   # tonne-per-day
+    x_para: 0.25            # para-hydrogen fraction at inlet
+    temperature: 80         # inlet temperature (K)
+    pressure: 5000          # inlet pressure (kPa)
+
+coolant:
+    fluid: "Helium"         # type of coolant
+    mass_flow_rate: 600.0   # tonne-per-day
+    temperature:  20.0      # temperature of coolant at inlet (K)
+    pressure: 500           # pressure of coolant at inlet (kPa)
+
+reactor:
+    length: 4.0             # m
+    width: 2.0              # m
+    height: 2.0             # m
+    fin_thickness: 0.4e-3   # m
+    fin_height: 6.0e-3      # m
+    fin_pitch: 1.5e-3       # m
+    seration_length: 6.0e-3 # m
+    
+catalyst:
+    solid_fraction: 0.31    # volumetric fraction of catlayst particles within reactor
+    diameter: 424.0e-6      # mean particle diameter
+    density: 4.0            # solid density of catalyst particles (g/cm3)
+    
+simulation:
+    nodes: 50              # number of nodes across reactor length to setup
+    tolerance: 1.0e-4       # tolerance of bvp solver
+    delta_t: 1.0            # initial guess of temperature difference between streams

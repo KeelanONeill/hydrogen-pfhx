@@ -1,0 +1,15 @@
+# ignore .bak file type
+*.bak
+
+# virtual env & pycache
+.venv/
+src/hydrogen_pfhx/__pycache__/
+tests/__pycache__/
+
+# output location
+output/
+
+# build directories
+build/
+hydrogen_pfhx.egg-info/
+dist/
