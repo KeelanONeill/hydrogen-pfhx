@@ -1,6 +1,6 @@
 [project]
 name = "hydrogen_pfhx"
-version = "0.1.0"
+version = "0.1.1"
 description = "Chemical engineering model of hydrogen plate-fin heat exchanger"
 readme = "README.md"
 keywords = ['hydrogen','pfhx','heat exchanger','ortho','para','engineering']
