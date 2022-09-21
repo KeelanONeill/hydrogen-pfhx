@@ -7,6 +7,8 @@ def load_config(configuration_file_path):
             configuration = yaml.safe_load(stream)
         except yaml.YAMLError as exc:
             print(exc)
+    
+    return configuration
 
 # convert from tpd to kg/s
 def tpd_to_kps(mass_flow_rate):

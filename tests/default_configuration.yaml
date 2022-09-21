@@ -27,6 +27,6 @@ catalyst:
     density: 4.0            # solid density of catalyst particles (g/cm3)
     
 simulation:
-    nodes: 50              # number of nodes across reactor length to setup
+    nodes: 20              # number of nodes across reactor length to setup
     tolerance: 1.0e-4       # tolerance of bvp solver
     delta_t: 1.0            # initial guess of temperature difference between streams
