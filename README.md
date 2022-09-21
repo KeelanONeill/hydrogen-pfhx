@@ -1,5 +1,5 @@
 # hydrogen-pfhx
-Chemical engineering model of hydrogen plate-fin heat exchanger
+Chemical engineering model of hydrogen plate-fin heat exchanger.
 
 ## Installation
 pip install hydrogen-pfhx
