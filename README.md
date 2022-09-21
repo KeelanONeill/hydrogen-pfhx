@@ -13,4 +13,6 @@ Two examples are given below:
 
 2. A notebook using google colab 
    - [open the test notebook in colab](https://colab.research.google.com/github/fsr-uwa/hydrogen-pfhx/blob/main/tests/test_model.ipynb)
-   - run the notebook: saving data will require approval for google drive usage.
+   - run the notebook. **NOTE WELL**:
+     - saving data will require approval for google drive usage.
+     - you will need to copy the file to drive to make any edits (e.g. edit config)
