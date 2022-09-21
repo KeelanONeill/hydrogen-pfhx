@@ -1,19 +1,11 @@
 # main file of hydrogen-pfhx
 
-import yaml
 import numpy as np
 from scipy.integrate import solve_bvp
 from hydrogen_pfhx import (fluids, catalysts, hexs, bvp_model, helium_neon, outputs, utils)
 
-def model(configuration_file = 'src/configs/default_configuration.yaml'):
-    # Step 1. read config file
-    with open(configuration_file, "r") as stream:
-        try:
-            configuration = yaml.safe_load(stream)
-        except yaml.YAMLError as exc:
-            print(exc)
-
-    # Step 2. Create a reactant, coolant, reactor & catalyst
+def model(configuration):
+    # Step 1. Create a reactant, coolant, reactor & catalyst
     # reactant
     reactant_mass_flowrate_kps = utils.tpd_to_kps(
         configuration['reactant']['mass_flow_rate'])
@@ -40,7 +32,7 @@ def model(configuration_file = 'src/configs/default_configuration.yaml'):
     # catalyst
     catalyst = catalysts.Catalyst(configuration['catalyst'])
 
-    # Step 3. Setup the boundary value problem - initialise a solution
+    # Step 2. Setup the boundary value problem - initialise a solution
     boundary_properties = np.array((
         configuration['reactant']['x_para'],
         configuration['reactant']['pressure'],
@@ -51,7 +43,7 @@ def model(configuration_file = 'src/configs/default_configuration.yaml'):
     (x_mesh, sol_init) = bvp_model.initialise_solution(reactant, coolant,
                                                        reactor, catalyst, boundary_properties, configuration['simulation'])
 
-    # Step 4. Run the BVP solver
+    # Step 3. Run the BVP solver
     additional_parameters = (reactor, catalyst, reactant,
                              coolant, boundary_properties)
     solution = solve_bvp(lambda x, y: bvp_model.bvp_function(x, y, additional_parameters=additional_parameters),
@@ -59,7 +51,7 @@ def model(configuration_file = 'src/configs/default_configuration.yaml'):
                              xb, yb, boundary_properties),
                          x_mesh, sol_init, tol=configuration['simulation']['tolerance'], max_nodes=1000, verbose=2)
 
-    # Step 5. Post-process & plot results.
+    # Step 4. Post-process & plot results.
     results = outputs.post_process(solution, reactant, coolant, reactor, catalyst, boundary_properties)
 
     return results

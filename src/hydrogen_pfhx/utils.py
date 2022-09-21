@@ -1,3 +1,12 @@
+import yaml
+
+def load_config(configuration_file_path):
+    # Step 1. read config file
+    with open(configuration_file_path, "r") as stream:
+        try:
+            configuration = yaml.safe_load(stream)
+        except yaml.YAMLError as exc:
+            print(exc)
 
 # convert from tpd to kg/s
 def tpd_to_kps(mass_flow_rate):
