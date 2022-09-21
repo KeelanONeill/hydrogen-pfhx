@@ -1,17 +1,10 @@
 # main file of hydrogen-pfhx
 
-import yaml
 import numpy as np
 from scipy.integrate import solve_bvp
 from hydrogen_pfhx import (fluids, catalysts, hexs, bvp_model, helium_neon, outputs, utils)
 
-def model(configuration_file = 'src/configs/default_configuration.yaml'):
-    # Step 1. read config file
-    with open(configuration_file, "r") as stream:
-        try:
-            configuration = yaml.safe_load(stream)
-        except yaml.YAMLError as exc:
-            print(exc)
+def model(configuration):
 
     # Step 2. Create a reactant, coolant, reactor & catalyst
     # reactant
