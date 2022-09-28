@@ -15,6 +15,7 @@ class PlateFinHex(object):
         self.fin_pitch = reactor_configuration['fin_pitch']  # (in width direction)
         self.fin_height = reactor_configuration['fin_height']    # (in height direction)
         self.seration_length = reactor_configuration['seration_length']
+        self.parting_sheet_thickness = reactor_configuration['parting_sheet_thickness']
 
     def characteristic_length(self):
         cl = self.hydraulic_diameter
