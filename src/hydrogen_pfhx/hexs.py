@@ -126,7 +126,7 @@ class PlateFinHex(object):
         # Reynolds number
         reactant.calculate_reynolds_number(catalyst.particle_diameter)
         Re = reactant.reynolds_number
-        aspect_ratio = self.hydraulic_diameter() / self.length
+        aspect_ratio = self.fin_spacing() / self.fin_height
 
         # friction factor
         self.f_hot = pressure_models.ergun_equation(catalyst.void_fraction, Re)
