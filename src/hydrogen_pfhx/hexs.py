@@ -32,7 +32,7 @@ class PlateFinHex(object):
         return s
 
     def layer_height(self):
-        lh = self.fin_height + self.fin_thickness
+        lh = self.fin_height + self.fin_thickness + self.parting_sheet_thickness
         return lh
 
     def number_layers(self):
