@@ -105,7 +105,7 @@ class PlateFinHex(object):
             heat_transfer_models.aluminium_thermal_conductivity(wall_temperatures))
         term_1 = self.hydraulic_diameter()/(8*self.k_hot)
         term_2 = 1/(self.h_hot)
-        term_3 = self.fin_thickness / solid_thermal_conductivity
+        term_3 = self.parting_sheet_thickness / solid_thermal_conductivity
         term_4 = 1/(self.h_cold)
         terms = [term_1, term_2, term_3, term_4]
         u = 1/np.sum(terms)
