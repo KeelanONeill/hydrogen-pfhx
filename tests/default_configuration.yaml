@@ -14,7 +14,7 @@ coolant:
 
 reactor:
     length: 6.0             # m
-    width: 2.0              # m
+    width: 1.5              # m
     height: 2.0             # m
     fin_thickness: 0.4e-3   # m
     fin_height: 6.0e-3      # m

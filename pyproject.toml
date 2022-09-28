@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "hydrogen_pfhx"
-version = "0.1.6"
+version = "0.1.7"
 description = "Chemical engineering model of hydrogen plate-fin heat exchanger"
 readme = "README.md"
 keywords = ['hydrogen','pfhx','heat exchanger','ortho','para','engineering']
@@ -18,7 +18,7 @@ classifiers = [
 ]
 dependencies = [
     "CoolProp >=6.4.1",
-    "matplotlib >=3.5.2",
+    "matplotlib >=3.2.2",
     "numpy >=1.21.6",
     "pandas >=1.3.5",
     "pyyaml >=6.0",

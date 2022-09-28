@@ -119,13 +119,9 @@ class PlateFinHex(object):
             reactant.thermal_conductivity  # self.k_hot
 
         # wall properties
-        original_temperature = reactant.temperature
-        reactant.update_conditions(wall_temperature, reactant.pressure)
-        k_wall = self.effective_radial_conductivity(
-            reactant, catalyst, self.hydraulic_diameter())
+        k_wall = heat_transfer_models.aluminium_thermal_conductivity(wall_temperature)
         Pr_w = reactant.viscosity * reactant.specific_heat_capacity / k_wall
-        reactant.update_conditions(original_temperature, reactant.pressure)
-
+        
         # Reynolds number
         reactant.calculate_reynolds_number(catalyst.particle_diameter)
         Re = reactant.reynolds_number
@@ -149,7 +145,7 @@ class PlateFinHex(object):
             Nu_turb = heat_transfer_models.gnielinski_equation(
                 f_darcy, Re, Pr_eff, Pr_w, aspect_ratio)
             phi = 4/3 - Re/6000
-            Nu_h = phi*Nu_turb + (1-phi)*Nu_lam
+            Nu_h = phi*Nu_lam + (1-phi)*Nu_turb
         else:
             f_darcy = pressure_models.ergun_equation(
                 catalyst.void_fraction, Re)

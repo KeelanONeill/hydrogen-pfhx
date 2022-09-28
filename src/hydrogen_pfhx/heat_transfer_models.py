@@ -92,7 +92,7 @@ def full_gnielinski(Re, Pr, d, L, eta, Pr_w):
 
         Nu_turb = gnielinski_equation(f_darcy, Re, Pr, Pr_w, aspect_ratio)
         phi = (Re-2300) / (4000-2300)
-        Nu_h = phi*Nu_turb + (1-phi)*Nu_lam
+        Nu_h = phi*Nu_lam + (1-phi)*Nu_turb
     else:
         f_darcy = pressure_models.ergun_equation(eta, Re)
         Nu_h = gnielinski_equation(f_darcy, Re, Pr, Pr_w, aspect_ratio)
