@@ -13,3 +13,4 @@ output/
 build/
 hydrogen_pfhx.egg-info/
 dist/
+tests/test_spyder.py
