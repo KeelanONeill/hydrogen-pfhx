@@ -1,5 +1,5 @@
 # simple test for verifying model
-import matplotlib.pyplot as plt    
+import matplotlib.pyplot as plt
 from hydrogen_pfhx import model, outputs, utils
 
 # load config from default location

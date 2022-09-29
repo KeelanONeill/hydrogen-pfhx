@@ -13,18 +13,18 @@ def model(configuration):
 
     # coolant
     coolant_name = configuration['coolant']['fluid']
-    reactor_mass_flowrate_kps = utils.tpd_to_kps(
+    coolant_mass_flowrate_kps = utils.tpd_to_kps(
         configuration['coolant']['mass_flow_rate'])
     if coolant_name == 'Hydrogen':
         xp_cool_inlet = configuration['coolant']['x_para']
-        coolant = fluids.Hydrogen(reactor_mass_flowrate_kps)
+        coolant = fluids.Hydrogen(coolant_mass_flowrate_kps)
         coolant.update_composition(xp_cool_inlet)
     elif coolant_name == 'HeliumNeon':
         helium_neon.setup_CoolProp(['Helium', 'Neon', 'Argon'])
         helium_fraction = configuration['coolant']['helium_fraction']
-        coolant = fluids.HeliumNeon(reactor_mass_flowrate_kps, helium_fraction)
+        coolant = fluids.HeliumNeon(coolant_mass_flowrate_kps, helium_fraction)
     else:
-        coolant = fluids.FluidStream(coolant_name, reactor_mass_flowrate_kps)
+        coolant = fluids.FluidStream(coolant_name, coolant_mass_flowrate_kps)
 
     # reactor
     reactor = hexs.PlateFinHex(configuration['reactor'])

@@ -15,6 +15,7 @@ class PlateFinHex(object):
         self.fin_pitch = reactor_configuration['fin_pitch']  # (in width direction)
         self.fin_height = reactor_configuration['fin_height']    # (in height direction)
         self.seration_length = reactor_configuration['seration_length']
+        self.parting_sheet_thickness = reactor_configuration['parting_sheet_thickness']
 
     def characteristic_length(self):
         cl = self.hydraulic_diameter
@@ -31,7 +32,7 @@ class PlateFinHex(object):
         return s
 
     def layer_height(self):
-        lh = self.fin_height + self.fin_thickness
+        lh = self.fin_height + self.fin_thickness + self.parting_sheet_thickness
         return lh
 
     def number_layers(self):
@@ -104,7 +105,7 @@ class PlateFinHex(object):
             heat_transfer_models.aluminium_thermal_conductivity(wall_temperatures))
         term_1 = self.hydraulic_diameter()/(8*self.k_hot)
         term_2 = 1/(self.h_hot)
-        term_3 = self.fin_thickness / solid_thermal_conductivity
+        term_3 = self.parting_sheet_thickness / solid_thermal_conductivity
         term_4 = 1/(self.h_cold)
         terms = [term_1, term_2, term_3, term_4]
         u = 1/np.sum(terms)
@@ -125,7 +126,7 @@ class PlateFinHex(object):
         # Reynolds number
         reactant.calculate_reynolds_number(catalyst.particle_diameter)
         Re = reactant.reynolds_number
-        aspect_ratio = self.hydraulic_diameter() / self.length
+        aspect_ratio = self.fin_spacing() / self.fin_height
 
         # friction factor
         self.f_hot = pressure_models.ergun_equation(catalyst.void_fraction, Re)
