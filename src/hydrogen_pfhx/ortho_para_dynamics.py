@@ -36,3 +36,25 @@ def first_order_kinetics(reactant):
     conversion_rate = k * cH2 * (xo - xo_equil)  # m3 / (mol.s)
 
     return conversion_rate
+
+
+# Milenko
+def autocatalytic_kinetics(reactant):
+    A0 = 18.2 # cm3/kg/h/k**n
+    n = 0.56
+    C0 = 38.5
+    D = 4.605
+    m = 2.5
+    p = 3.6
+    
+    T = reactant.temperature
+    rho = reactant.mass_density*1e-3
+    
+    A = A0 * T ** n
+    C = (C0 + D / T ** m)
+    
+    k = A*rho + C*rho**p
+    
+    return k
+    
+    
