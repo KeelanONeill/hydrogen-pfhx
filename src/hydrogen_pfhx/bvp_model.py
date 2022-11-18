@@ -44,8 +44,8 @@ def bvp_function(z, process_properties, additional_parameters):
         reactor.cold_side_transport_behaviour(coolant)
 
         # reactor conversion
-        r_dot = ortho_para_dynamics.first_order_kinetics(
-            reactant)              # mol/m3/s
+        r_dot = ortho_para_dynamics.kinetics(
+            reactant, catalyst.kinetic_model)              # mol/m3/s
         dNpdz = r_dot * reactor.total_hot_side_area()*catalyst.solid_fraction   # mol/m/s
         dxpdz = dNpdz * reactant.molecular_mass / reactant.mass_flow_rate
 
