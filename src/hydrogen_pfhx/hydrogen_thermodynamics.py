@@ -32,13 +32,11 @@ class HydrogenData(object):
     
     
     def __init__(self):
-        # ref pressure
+        # ref pressure (atmospheric pressure)
         self.p_ref = 101325 # Pa
         
-        # initialise the reference temperature
-        # t_guess = CP.PropsSI('T','P',self.p_ref,'Q',0,'Hydrogen')
-        # self.t_ref = fzero(@(T) self.vapour_pressure(T) - self.p_ref, t_guess, self.opt)
-        self.t_ref = 1000
+        # reference temperature is the normal boiling point
+        self.t_ref = 20.369
                     
         # initialise the reference enthalpy
         rho_guess = CP.PropsSI('Dmolar','P',self.p_ref, 'T',self.t_ref,'Hydrogen')
