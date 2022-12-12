@@ -6,6 +6,7 @@ class Catalyst(object):
         self.particle_diameter = catalyst_configuration['diameter']
         self.density = catalyst_configuration['density']
         self.void_fraction = 1 - catalyst_configuration['solid_fraction']
+        self.kinetic_model = catalyst_configuration['kinetic_model']
 
     def calculate_catalyst_mass(self, reaction_side_volume):
         catalyst_volume = reaction_side_volume * self.solid_fraction
