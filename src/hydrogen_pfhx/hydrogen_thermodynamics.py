@@ -1,6 +1,7 @@
 import numpy as np
 import scipy.optimize
 import CoolProp.CoolProp as CP
+from ortho_para_dynamics import para_ortho_equilibrium
 
 class HydrogenData(object):
     # Relevant equations for calculating hydrogen properties
@@ -32,14 +33,14 @@ class HydrogenData(object):
     
     
     def __init__(self):
-        # ref pressure (atmospheric pressure)
-        self.p_ref = 101325 # Pa
-        
+        # ref pressure (Pa)
+        self.p_ref = 101325
         # reference temperature is the normal boiling point
-        self.t_ref = 20.369
+        self.t_ref = CP.PropsSI('T','P',self.p_ref,'Q',0,'Hydrogen')
+        
                     
         # initialise the reference enthalpy
-        rho_guess = CP.PropsSI('Dmolar','P',self.p_ref, 'T',self.t_ref,'Hydrogen')
+        rho_guess = CP.PropsSI('Dmolar','P',self.p_ref,'Q',0,'Hydrogen')
         rho = self.calculate_density(self.p_ref, self.t_ref, rho_guess)
         self.h_ref = self.absolute_enthalpy(rho, self.t_ref)
                 
@@ -374,6 +375,11 @@ class NormalHydrogen(HydrogenData):
         
         # call superclass init
         HydrogenData.__init__(self)
+        
+        # modify h_ref
+        M = CP.PropsSI('M','Hydrogen')
+        base_hoc = 525e3 * M
+        self.h_ref = self.h_ref - base_hoc
 
 
 class OrthoHydrogen(HydrogenData):
@@ -415,6 +421,12 @@ class OrthoHydrogen(HydrogenData):
         
         # call superclass init
         HydrogenData.__init__(self)
+        
+        # modify h_ref
+        M = CP.PropsSI('M','Hydrogen')
+        _,normal_xo = para_ortho_equilibrium(293.15)
+        base_hoc = 525e3 * M / normal_xo
+        self.h_ref = self.h_ref - base_hoc
 
 
 class ParaHydrogen(HydrogenData):
