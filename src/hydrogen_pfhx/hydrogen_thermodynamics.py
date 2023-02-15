@@ -1,7 +1,7 @@
 import numpy as np
 import scipy.optimize
 import CoolProp.CoolProp as CP
-from ortho_para_dynamics import para_ortho_equilibrium
+from hydrogen_pfhx.ortho_para_dynamics import para_ortho_equilibrium
 
 class HydrogenData(object):
     # Relevant equations for calculating hydrogen properties
