@@ -67,7 +67,7 @@ def bvp_function(z, process_properties, additional_parameters):
         dPrdz = reactor.hot_side_pressure_drop(reactant, catalyst)
         dPcdz = reactor.cold_side_pressure_drop(coolant)
         current_deltas = np.vstack(
-            ([dxpdz[0], dPrdz[0]/1e3, dTrdz[0], dPcdz/1e3, dTcdz[0]]))
+            ([dxpdz, dPrdz/1e3, dTrdz, dPcdz/1e3, dTcdz]))
         delta_process_properties[:, zi] = current_deltas.flatten()
 
     return delta_process_properties
