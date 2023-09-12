@@ -116,7 +116,8 @@ class HydrogenData(object):
         return pe
     
     def calculate_density(self, P, T, rho_guess):
-        rho = scipy.optimize.fsolve(self.pressure_error,  x0 = rho_guess, args=(T, P), xtol=1e-6)
+        rho_sols = scipy.optimize.fsolve(self.pressure_error,  x0 = rho_guess, args=(T, P), xtol=1e-6)
+        rho = rho_sols[0] # should only be one root
         return rho
          
     # Correlation & data from Assael et al.
